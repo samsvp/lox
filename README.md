@@ -5,7 +5,7 @@ The Java version has been converted to C#, while the C version hasn't changed.
 
 ### Compiling
 
-### CSLOX
+#### CSLOX
 ```
 dotnet run
 ```

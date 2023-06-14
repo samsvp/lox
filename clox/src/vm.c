@@ -40,6 +40,7 @@ static InterpretResult run()
 
     while (1)
     {
+        
 #ifdef DEBUG_TRACE_EXECUTION
         printf("            ");
         for (Value* slot=vm.stack; slot < vm.stackTop; slot++) {
@@ -51,6 +52,7 @@ static InterpretResult run()
         disassembleInstruction(vm.chunk,
             (int)(vm.ip - vm.chunk->code));
 #endif
+
         uint8_t instruction;
         switch (instruction = READ_BYTE())
         {
@@ -87,8 +89,21 @@ static InterpretResult run()
 
 InterpretResult interpret(const char* source)
 {
-    compile(source);
-    return INTERPRET_OK;
+    Chunk chunk;
+    initChunk(&chunk);
+
+    if (!compile(source, &chunk)) {
+        freeChunk(&chunk);
+        return INTERPRET_COMPILE_ERROR;
+    }
+
+    vm.chunk = &chunk;
+    vm.ip = vm.chunk->code;
+
+    InterpretResult result = run();
+
+    freeChunk(&chunk);
+    return result;
 }
 
 

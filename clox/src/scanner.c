@@ -178,7 +178,7 @@ static bool isAlpha(char c)
 }
 
 
-static Token string()
+static Token string(void)
 {
     while (peekChar() != '"' && !isAtEnd())
     {
@@ -194,7 +194,7 @@ static Token string()
 }
 
 
-static Token number() 
+static Token number(void) 
 {
     while (isDigit(peekChar())) advance();
 
@@ -210,7 +210,7 @@ static Token number()
 }
 
 
-static Token identifier() 
+static Token identifier(void) 
 {
     while (isAlpha(peekChar()) || isDigit(peekChar())) 
         advance();

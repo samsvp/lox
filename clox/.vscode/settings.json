@@ -5,6 +5,21 @@
         "random": "c",
         "*.tcc": "c",
         "functional": "c",
-        "streambuf": "c"
+        "streambuf": "c",
+        "*.ipp": "c",
+        "optional": "c",
+        "istream": "c",
+        "ostream": "c",
+        "ratio": "c",
+        "system_error": "c",
+        "array": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "variant": "c",
+        "stdlib.h": "c",
+        "object.h": "c",
+        "scanner.h": "c",
+        "memory.h": "c"
     }
 }

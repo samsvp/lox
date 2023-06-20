@@ -14,6 +14,7 @@ set(SOURCE_FILES
     src/scanner.c
     src/value.c
     src/vm.c
+    src/object.c
 )
 
 # Add header files from src directory
@@ -26,6 +27,7 @@ set(HEADER_FILES
     src/scanner.h
     src/value.h
     src/vm.h
+    src/object.h
 )
 
 # Add the source files to the executable

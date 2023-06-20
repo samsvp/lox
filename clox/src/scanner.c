@@ -13,6 +13,13 @@ typedef struct {
 
 Scanner scanner;
 
+void initScanner(const char* source)
+{
+    scanner.start = source;
+    scanner.current = source;
+    scanner.line = 1;
+}
+
 
 static bool isAtEnd()
 {
@@ -39,14 +46,6 @@ static Token errorToken(const char* message)
     token.length = (int)strlen(message);
     token.line = scanner.line;
     return token;
-}
-
-
-void initScanner(const char* source)
-{
-    scanner.start = source;
-    scanner.current = source;
-    scanner.line = 1;
 }
 
 
@@ -114,7 +113,7 @@ static TokenType checkKeyword(int start, int length,
                               const char* rest, TokenType type)
 {
     if (scanner.current - scanner.start == start + length
-        && memcpy(scanner.start + start, rest, length) == 0) 
+        && memcmp(scanner.start + start, rest, length) == 0) 
     {
         return type;
     }

@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "common.h": "c",
+        "compiler.h": "c",
+        "random": "c",
+        "*.tcc": "c",
+        "functional": "c",
+        "streambuf": "c"
+    }
+}

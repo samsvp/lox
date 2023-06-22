@@ -15,6 +15,7 @@ set(SOURCE_FILES
     src/value.c
     src/vm.c
     src/object.c
+    src/table.c
 )
 
 # Add header files from src directory
@@ -28,6 +29,7 @@ set(HEADER_FILES
     src/value.h
     src/vm.h
     src/object.h
+    src/table.h
 )
 
 # Add the source files to the executable

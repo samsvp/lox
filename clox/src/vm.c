@@ -11,15 +11,41 @@
 
 
 VM vm;
+
+
+
+static void resetStack(void)
+{
+    vm.stackTop = vm.stack;
+}
+
+
+void initVM(void)
+{
+    resetStack();
+    vm.objects = NULL;
+    initTable(&vm.strings);
+}
+
+
+void freeVM(void)
+{
+    freeTable(&vm.strings);
+    freeObjects();
+}
+
+
 static Value peek(int distance) 
 {
     return vm.stackTop[-1 - distance];
 }
 
+
 static bool isFalsey(Value value) 
 {
     return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
 }
+
 
 static void concatenate(void)
 {
@@ -36,11 +62,6 @@ static void concatenate(void)
     push(OBJ_VAL(result));
 }
 
-static void resetStack(void)
-{
-    vm.stackTop = vm.stack;
-}
-
 
 static void runtimeError(const char* format, ...)
 {
@@ -54,19 +75,6 @@ static void runtimeError(const char* format, ...)
     int line = vm.chunk->lines[instruction];
     fprintf(stderr, "[line %d] in script\n", line);
     resetStack();
-}
-
-
-void initVM(void)
-{
-    resetStack();
-    vm.objects = NULL;
-}
-
-
-void freeVM(void)
-{
-    freeObjects();
 }
 
 

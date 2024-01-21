@@ -10,6 +10,7 @@ set(SOURCE_FILES
     src/debug.c
     src/memory.c
     src/value.c
+    src/vm.c
 )
 
 # Add header files from src directory
@@ -19,6 +20,7 @@ set(HEADER_FILES
     src/debug.h
     src/memory.h 
     src/value.h
+    src/vm.h
 )
 
 # Add the source files to the executable

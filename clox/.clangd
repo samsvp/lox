@@ -1,0 +1,6 @@
+Diagnostics:
+  Suppress: ["misc-definitions-in-headers"]
+
+CompileFlags:
+  Add:
+    [-xc, -I/usr/include/freetype2, -I/usr/include/libpng16]

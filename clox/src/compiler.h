@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 #include "vm.h"
+#include "object.h"
 
 // compiles the source into the given chunk.
 // returns true if code has been successfully compiled

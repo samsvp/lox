@@ -202,7 +202,8 @@ static void grouping() {
 // adds a constant to the chunk. currently, its limited 
 // to 256 constants, although we added support for bigger
 // constants on exercise 2 from chapter 14
-static uint8_t makeConstant(Value value) {
+static uint8_t makeConstant(Value value) 
+{
     int constant = addConstant(currentChunk(), value);
     if (constant > UINT8_MAX) {
         error("Too many constants in one chunk.");
@@ -213,14 +214,27 @@ static uint8_t makeConstant(Value value) {
 }
 
 
-static void emitConstant(Value value) {
+static void emitConstant(Value value) 
+{
     emitBytes(OP_CONSTANT, makeConstant(value));
 }
 
 // parses a number constant
-static void number() {
+static void number() 
+{
     double value = strtod(parser.previous.start, NULL);
     emitConstant(NUMBER_VAL(value));
+}
+
+// parses a string object
+static void string() 
+{
+    // +1 and -2 trim the '"'
+    emitConstant(
+        OBJ_VAL(copyString(parser.previous.start + 1,
+                           parser.previous.length - 2)
+        )
+    );
 }
 
 // parses unary  prefix expression (e.g. -4, !true)
@@ -260,7 +274,7 @@ ParseRule rules[] = {
     [TOKEN_LESS]          = {NULL,     binary, PREC_COMPARISON},
     [TOKEN_LESS_EQUAL]    = {NULL,     binary, PREC_COMPARISON},
     [TOKEN_IDENTIFIER]    = {NULL,     NULL,   PREC_NONE},
-    [TOKEN_STRING]        = {NULL,     NULL,   PREC_NONE},
+    [TOKEN_STRING]        = {string,     NULL,   PREC_NONE},
     [TOKEN_NUMBER]        = {number,   NULL,   PREC_NONE},
     [TOKEN_AND]           = {NULL,     NULL,   PREC_NONE},
     [TOKEN_CLASS]         = {NULL,     NULL,   PREC_NONE},

@@ -14,6 +14,7 @@ typedef struct {
     Value* stack;
     int stackCount;
     int stackCapacity;
+    Obj* objects;
 } VM;
 
 
@@ -23,6 +24,7 @@ typedef enum {
     INTERPRET_RUNTIME_ERROR,
 } InterpretResult;
 
+extern VM vm;
 
 void initVM();
 void freeVM();

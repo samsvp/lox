@@ -9,6 +9,6 @@
 // compiles the source into the given chunk.
 // returns true if code has been successfully compiled
 // and false otherwise (e.g. if it encountered syntax errors)
-bool compile(const char* source, Chunk* chunk);
+ObjFunction* compile(const char* source);
 
 #endif
